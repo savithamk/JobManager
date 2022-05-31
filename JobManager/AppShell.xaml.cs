@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using JobManager.ViewModels;
-using JobManager.Views;
 using Xamarin.Forms;
+using JobManager.Views;
 
 namespace JobManager
 {
@@ -10,14 +9,12 @@ namespace JobManager
     {
         public AppShell()
         {
+
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(WelcomePage), typeof(WelcomePage));
+          
         }
 
-        private async void OnMenuItemClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync("//LoginPage");
-        }
+
     }
 }

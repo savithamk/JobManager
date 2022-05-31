@@ -1,8 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using JobManager.Services;
-using JobManager.Views;
 
 namespace JobManager
 {
@@ -13,7 +11,6 @@ namespace JobManager
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 

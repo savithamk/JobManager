@@ -1,13 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Collections.Generic;
+
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace JobManager.Views
 {
-    public partial class AboutPage : ContentPage
+    public partial class WelcomePage : ContentPage
     {
-        public AboutPage()
+        public WelcomePage()
         {
             InitializeComponent();
         }
