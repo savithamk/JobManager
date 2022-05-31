@@ -15,5 +15,7 @@ namespace JobManager.Services
 
         Task UpdateJob(Job job);
 
+        Task DeleteJob(Job job);
+
     }
 }
