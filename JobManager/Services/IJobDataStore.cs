@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using JobManager.Models;
+
+namespace JobManager.Services
+{
+    public interface IJobDataStore<T>
+    {
+        Task<IEnumerable<Job>> GetJobs();
+
+        Task<Job> GetJob(int id);
+
+        Task AddJob(Job job);
+
+        Task UpdateJob(Job job);
+
+    }
+}
