@@ -37,8 +37,8 @@ namespace JobManager.ViewModels
 
         private async Task Selected(Job job)
         {
-            String route = $"{nameof(Views.JobListPage)}?JobId={job.Id}";
-            await AppShell.Current.GoToAsync(route);
+            //String route = $"{nameof(Views.JobListPage)}?JobId={job.Id}";
+            //await AppShell.Current.GoToAsync(route);
 
         }
         public async Task Refresh()
@@ -55,7 +55,7 @@ namespace JobManager.ViewModels
         public async void LoadJobs()
         {
             IEnumerable<Job> jobs = await JobDataStore.GetJobs();
-            Jobs.AddRange(Jobs);
+            Jobs.AddRange(jobs);
 
         }
     }

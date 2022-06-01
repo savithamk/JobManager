@@ -22,6 +22,15 @@
                         CachingStrategy="RecycleElement"
                         ItemsSource="{Binding Jobs}"
                         RowHeight="60">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Job">
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Label Text="{Binding Name}" TextColor="Black"></Label>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout>
             </ScrollView>
