@@ -87,6 +87,10 @@
         <ShellContent Route="JobListPage" ContentTemplate="{DataTemplate views:JobListPage}"></ShellContent>
     </FlyoutItem>
 
+    <FlyoutItem Title="JobDetail">
+        <ShellContent Route="JobDetailPage" ContentTemplate="{DataTemplate views:JobDetailPage}"></ShellContent>
+    </FlyoutItem>
+
     <!--
         TabBar lets you define content that won't show up in a flyout menu. When this content is active
         the flyout menu won't be available. This is useful for creating areas of the application where 

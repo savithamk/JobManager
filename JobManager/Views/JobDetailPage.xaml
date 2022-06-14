@@ -1,21 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
+     xmlns:viewmodels="clr-namespace:JobManager.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewmodels="clr-namespace:JobManager.ViewModels"
-    x:Class="JobManager.Views.WelcomePage">
-
+    x:Class="JobManager.Views.JobDetailPage">
 
     <ContentPage.BindingContext>
-        <viewmodels:WelcomeViewModel />
+        <viewmodels:JobDetailViewModel />
     </ContentPage.BindingContext>
-
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Job Manager!"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+            <Label Text="Job Id: " FontSize="Large"/>
+            <Label Text="{Binding JobId}" FontSize="Large" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
