@@ -11,7 +11,7 @@ namespace JobManager.Services
     class JobDataStoreBlobStorageJson : IJobDataStore<Job>
     {
 
-        private static string ConnectionString => "DefaultEndpointsProtocol=https;AccountName=052022jobmanager;AccountKey=lRAoAesneyu2nrer0QCBC+GnOUhAtxYTqMj+tClvHRYmZIDTzTgSxqIEoFL3TjzS7wctPdLMM0oO+AStTGnmWA==;EndpointSuffix=core.windows.net";
+        private static string ConnectionString => "";
 
         private static string Container => "data";
 
@@ -37,29 +37,77 @@ namespace JobManager.Services
 
         }
 
+        public async Task<List<Job>> ReadFile()
+        {
+
+            BlobClient blob = serviceClient.GetBlobContainerClient(Container).GetBlobClient(FileName);
+            if (blob.Exists())
+            {
+                var stream = new MemoryStream();
+                await blob.DownloadToAsync(stream);
+                stream.Position = 0;
+                var jsonString = new StreamReader(stream).ReadToEnd();
+
+                var jobs = JsonConvert.DeserializeObject<List<Job>>(jsonString);
+                return jobs;
+            }
+            else
+            {
+                var defaultJobs = GetDefaultJobs();
+                await WriteFile(defaultJobs);
+                return defaultJobs;
+            }
+        }
+
+        private List<Job> GetDefaultJobs()
+        {
+
+            var jobs = new List<Job>()
+            {
+                new Job {Id = 1, Name = "Job A Local Json File", Description = "This is job a."},
+                new Job {Id = 2, Name = "Job B Local Json File", Description = "This is job b."},
+                new Job {Id = 3, Name = "Job C Local Json File", Description = "This is job c."},
+                new Job {Id = 4, Name = "Job D Local Json File", Description = "This is job d."}
+
+
+            };
+            return jobs;
+        }
+
         public async Task AddJob(Job job)
         {
-            throw new NotImplementedException();
+            var jobs = await ReadFile();
+            jobs.Add(job);
+            WriteFile(jobs);
         }
 
         public async Task DeleteJob(Job job)
         {
-            throw new NotImplementedException();
+            var jobs = await ReadFile();
+            var remove = jobs.Find(p => p.Id == job.Id);
+
+            jobs.Remove(remove);
         }
 
         public async Task<Job> GetJob(int id)
         {
-            throw new NotImplementedException();
+            var jobs = await ReadFile();
+            var job = jobs.Find(p => p.Id == id);
+            return job;
+
         }
 
         public async Task<IEnumerable<Job>> GetJobs()
         {
-            throw new NotImplementedException();
+            var jobs = await ReadFile();
+            return jobs;
         }
 
         public async Task UpdateJob(Job job)
         {
-            throw new NotImplementedException();
+            var jobs = await ReadFile();
+            jobs[jobs.FindIndex(p => job.Id == job.Id)] = job;
+            WriteFile(jobs);
         }
     }
 }
