@@ -3,16 +3,29 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
      xmlns:viewmodels="clr-namespace:JobManager.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     x:Class="JobManager.Views.JobDetailPage">
 
     <ContentPage.BindingContext>
         <viewmodels:JobDetailViewModel />
     </ContentPage.BindingContext>
 
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding PageAppearingCommand}">
+        </xct:EventToCommandBehavior>
+    </ContentPage.Behaviors>
+
+
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Job Id: " FontSize="Large"/>
-            <Label Text="{Binding JobId}" FontSize="Large" />
+            <Label Text="{Binding JobId}" FontSize="Medium" />
+
+             <Label Text="Name: " FontSize="Large"/>
+            <Label Text="{Binding Name}" FontSize="Medium" />
+
+             <Label Text="Description: " FontSize="Large"/>
+            <Label Text="{Binding Description}" FontSize="Medium" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
